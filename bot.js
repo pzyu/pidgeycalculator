@@ -87,9 +87,9 @@ function calculate(msg) {
 	bot.sendMessage(msg.chat.id, "You can evolve " + can_evolve + " Pidgeys");
 	setTimeout(function() {
 		bot.sendMessage(msg.chat.id, "You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
-	}, 100);
+	}, 200);
 	setTimeout(function() {
 		bot.sendMessage(msg.chat.id, "You will earn " + can_evolve * 500 + " exp without lucky egg and " + can_evolve * 1000 + " exp with lucky egg!");
-	}, 200);
+	}, 300);
 	mode = "idle";
 };
