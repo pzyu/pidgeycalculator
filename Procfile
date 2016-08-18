@@ -1,1 +1,1 @@
-app: node bot.js -p $PORT
+web: node bot.js
