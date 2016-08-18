@@ -11,9 +11,16 @@ var total_candies = 0;
 
 bot.onText(/^\/start|\/help$/, function(msg, match) {
 	var name = match[1];
-	bot.sendMessage(msg.chat.id, "Hello " + msg.from.first_name + ", I'm your Pidgey calculator. To start, type in /pidgey. You can stop the operation by sending /exit at any time").then(function () {
+	bot.sendMessage(msg.chat.id, "Hello " + msg.from.first_name + ", I'm your Pidgey calculator. To start, type in /pidgey. You can stop the operation by sending /stop at any time").then(function () {
     	// reply sent!
   	});
+});
+
+bot.onText(/^\/stop$/, function(msg, match) {
+	if (mode != "idle") {
+		mode = "idle"
+		bot.sendMessage(msg.chat.id, "I'll just go away now");
+	}
 });
 
 bot.onText(/^\/pidgey$/, function(msg, match) {
