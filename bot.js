@@ -5,6 +5,8 @@ var bot;
 
 if(process.env.NODE_ENV === 'production') {
 	bot = new Bot(token);
+	console.log('production');
+	console.log(process.env);
 	bot.setWebHook(process.env.HEROKU_URL + bot.token);
 }
 else {
