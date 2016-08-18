@@ -9,7 +9,7 @@ var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
 
-bot.onText(/^\/help$/, function(msg, match) {
+bot.onText(/^\/start|\/help$/, function(msg, match) {
 	var name = match[1];
 	bot.sendMessage(msg.chat.id, "Hello " + msg.from.first_name + ", I'm your Pidgey calculator. To start, type in /pidgey. You can stop the operation by sending /exit at any time").then(function () {
     	// reply sent!
