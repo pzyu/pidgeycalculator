@@ -1,12 +1,10 @@
-var token = '245201218:AAFfTLEzf79bzqDoyQh1pN2cNyQhJ_hp62I';
+var token = process.env.TOKEN;
 
 var Bot = require('node-telegram-bot-api');
 var bot;
 
 if(process.env.NODE_ENV === 'production') {
 	bot = new Bot(token);
-	console.log('production');
-	console.log(process.env.IP);
 	bot.setWebHook(process.env.HEROKU_URL + bot.token);
 }
 else {
@@ -14,6 +12,7 @@ else {
 }
 
 console.log('bot server started...');
+console.log(bot);
 
 var mode = "idle";
 var total_pidgeys = 0;
