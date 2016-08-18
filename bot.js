@@ -9,28 +9,29 @@ var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
 
-bot.onText(/^\/start|\/help$/, function(msg, match) {
+bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
+	console.log(msg);
 	var name = match[1];
 	bot.sendMessage(msg.chat.id, "Hello " + msg.from.first_name + ", I'm your Pidgey calculator. To start, type in /pidgey. You can stop the operation by sending /stop at any time").then(function () {
     	// reply sent!
   	});
 });
 
-bot.onText(/^\/stop$/, function(msg, match) {
+bot.onText(/^\/stop.*$/, function(msg, match) {
 	if (mode != "idle") {
 		mode = "idle"
 		bot.sendMessage(msg.chat.id, "I'll just go away now");
 	}
 });
 
-bot.onText(/^\/pidgey$/, function(msg, match) {
+bot.onText(/^\/pidgey.*$/, function(msg, match) {
 	mode = "get_pidgey"
 	bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
 });
 
 bot.onText(/.*/, function(msg, match) {
 	console.log(msg.text);
-	if (mode == "get_pidgey" && msg.text != "/pidgey") {
+	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
 		getPidgey(msg);
 	} else if (mode == "get_candy") {
 		getCandy(msg);
