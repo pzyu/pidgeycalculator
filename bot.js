@@ -18,6 +18,8 @@ var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
 
+console.log(mode);
+
 bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
 	var name = match[1];
