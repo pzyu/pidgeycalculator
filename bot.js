@@ -12,7 +12,7 @@ else {
 }
 
 console.log('bot server started...');
-console.log(bot);
+//console.log(bot);
 
 var mode = "idle";
 var total_pidgeys = 0;
