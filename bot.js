@@ -103,3 +103,5 @@ function calculate(msg) {
 	}, 300);
 	mode = "idle";
 };
+
+module.exports = bot;
