@@ -7,8 +7,8 @@ console.log(process.env.NODE_ENV);
 
 if(process.env.NODE_ENV === 'production') {
 	bot = new Bot(token);
-	console.log(process.env.HEROKU_URL + bot.token);
-	bot.setWebHook(process.env.HEROKU_URL + bot.token);
+	console.log(process.env.HEROKU_URL);
+	bot.setWebHook(process.env.HEROKU_URL);
 }
 else {
   	bot = new Bot('245201218:AAFfTLEzf79bzqDoyQh1pN2cNyQhJ_hp62I', { polling: true });
