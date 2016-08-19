@@ -1,27 +1,13 @@
-var token = process.env.TOKEN;
+var token = '245201218:AAFfTLEzf79bzqDoyQh1pN2cNyQhJ_hp62I';
 
-var Bot = require('node-telegram-bot-api');
-var bot;
-
-console.log(process.env.NODE_ENV);
-
-if(process.env.NODE_ENV === 'production') {
-	bot = new Bot(token);
-	console.log(process.env.HEROKU_URL + bot.token);
-	bot.setWebHook(process.env.HEROKU_URL + bot.token);
-}
-else {
-  	bot = new Bot('245201218:AAFfTLEzf79bzqDoyQh1pN2cNyQhJ_hp62I', { polling: true });
-}
+var Bot = require('node-telegram-bot-api'),
+	bot = new Bot(token, { polling: true });
 
 console.log('bot server started...');
-//console.log(bot);
 
 var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
-
-console.log(mode);
 
 bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
@@ -107,5 +93,3 @@ function calculate(msg) {
 	}, 300);
 	mode = "idle";
 };
-
-module.exports = bot;
