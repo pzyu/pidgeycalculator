@@ -30,7 +30,7 @@ bot.onText(/^\/pidgey.*$/, function(msg, match) {
 });
 
 bot.onText(/.*/, function(msg, match) {
-	console.log(msg.text);
+	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
 		getPidgey(msg);
 	} else if (mode == "get_candy") {
@@ -41,7 +41,7 @@ bot.onText(/.*/, function(msg, match) {
 function getPidgey(msg) {
 	var isNum = /^\d+$/.test(msg.text);
 	total_pidgeys = parseInt(msg.text);
-	console.log(isNum);
+	//console.log(isNum);
 	if (!isNum) {
 		bot.sendMessage(msg.chat.id, "Please enter a valid number");
 	} else {
@@ -84,6 +84,9 @@ function calculate(msg) {
 	}
 	var candies_left = ((total_candies - can_evolve * 12) == 0) ? "no" : total_candies - can_evolve * 12;
 	var pidgeys_left = ((total_pidgeys - can_evolve) == 0) ? "no" : total_pidgeys - can_evolve;
+	console.log("You can evolve " + can_evolve + " Pidgeys");
+	console.log("You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
+	console.log("You will earn " + can_evolve * 500 + " exp without lucky egg and " + can_evolve * 1000 + " exp with lucky egg!");
 	bot.sendMessage(msg.chat.id, "You can evolve " + can_evolve + " Pidgeys");
 	setTimeout(function() {
 		bot.sendMessage(msg.chat.id, "You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
