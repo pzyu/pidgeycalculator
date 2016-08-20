@@ -66,10 +66,10 @@ function getCandy(msg) {
 		}, 100);
 		} else {
 			bot.sendMessage(msg.chat.id, "So you have " + total_candies + " candies");
-			setTimeout(function() {
-				bot.sendMessage(msg.chat.id, "Let me calculate that for you");
-				calculate(msg);
-			}, 100);
+			// setTimeout(function() {
+			// 	bot.sendMessage(msg.chat.id, "Let me calculate that for you");
+			// 	calculate(msg);
+			// }, 100);
 		}
 	}
 };
@@ -84,15 +84,15 @@ function calculate(msg) {
 	}
 	var candies_left = ((total_candies - can_evolve * 12) == 0) ? "no" : total_candies - can_evolve * 12;
 	var pidgeys_left = ((total_pidgeys - can_evolve) == 0) ? "no" : total_pidgeys - can_evolve;
-	console.log("You can evolve " + can_evolve + " Pidgeys");
-	console.log("You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
-	console.log("You will earn " + can_evolve * 500 + " exp without lucky egg and " + can_evolve * 1000 + " exp with lucky egg!");
-	bot.sendMessage(msg.chat.id, "You can evolve " + can_evolve + " Pidgeys");
+	console.log("You can evolve " + can_evolve + " Pidgeys with " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
+	console.log("This gives you " + can_evolve * 500 + " EXP without lucky egg and " + can_evolve * 1000 + " EXP with lucky egg!");
+
+	bot.sendMessage(msg.chat.id, "You can evolve " + can_evolve + " Pidgeys with " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
+	//setTimeout(function() {
+	//	bot.sendMessage(msg.chat.id, "You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
+	//}, 200);
 	setTimeout(function() {
-		bot.sendMessage(msg.chat.id, "You will have " + pidgeys_left + " Pidgeys and " + candies_left + " candies left");
-	}, 200);
-	setTimeout(function() {
-		bot.sendMessage(msg.chat.id, "You will earn " + can_evolve * 500 + " exp without lucky egg and " + can_evolve * 1000 + " exp with lucky egg!");
+		bot.sendMessage(msg.chat.id, "This gives you " + can_evolve * 500 + " EXP without lucky egg and " + can_evolve * 1000 + " EXP with lucky egg!");
 	}, 300);
 	mode = "idle";
 };
