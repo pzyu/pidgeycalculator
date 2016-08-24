@@ -66,10 +66,10 @@ function getCandy(msg) {
 		}, 100);
 		} else {
 			bot.sendMessage(msg.chat.id, "So you have " + total_candies + " candies");
-			// setTimeout(function() {
+			setTimeout(function() {
 			// 	bot.sendMessage(msg.chat.id, "Let me calculate that for you");
-			// 	calculate(msg);
-			// }, 100);
+			        calculate(msg);
+			}, 100);
 		}
 	}
 };
