@@ -62,7 +62,7 @@ function getCandy(msg) {
 		if (total_candies < 12) {
 			bot.sendMessage(msg.chat.id, "You can't evolve any of them!");
 			setTimeout(function() {
-				bot.sendMessage(msg.chat.id, "Please try again, or go away using the /exit command");
+				bot.sendMessage(msg.chat.id, "Please try again, or stop using the /stop command");
 		}, 100);
 		} else {
 			bot.sendMessage(msg.chat.id, "So you have " + total_candies + " candies");
