@@ -25,8 +25,9 @@ bot.onText(/^\/stop.*$/, function(msg, match) {
 });
 
 bot.onText(/^\/pidgey.*$/, function(msg, match) {
-	mode = "get_pidgey"
-	bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
+	//mode = "get_pidgey"
+	//bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
+	bot.sendMessage(msg.chat.id, msg);
 });
 
 bot.onText(/.*/, function(msg, match) {
