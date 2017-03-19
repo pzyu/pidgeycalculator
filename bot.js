@@ -25,15 +25,15 @@ bot.onText(/^\/stop.*$/, function(msg, match) {
 });
 
 bot.onText(/^\/pidgey.*$/, function(msg, match) {
-	//mode = "get_pidgey"
-	//bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
-	bot.sendMessage(msg.chat.id, msg);
+	mode = "get_pidgey"
+	bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
 });
 
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
-		getPidgey(msg);
+		//getPidgey(msg);
+		bot.sendMessage(msg.chat.id, msg.text);
 	} else if (mode == "get_candy") {
 		getCandy(msg);
 	}
