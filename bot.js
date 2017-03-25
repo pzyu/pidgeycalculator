@@ -45,6 +45,7 @@ bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
 		//getPidgey(msg);
+		console.log("Typing" + messageArray[messageIndex]);
 		bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
     	messageIndex++;
     	if(messageIndex > messageArray.length - 1) {
