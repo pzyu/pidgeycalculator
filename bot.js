@@ -23,7 +23,13 @@ bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
 	var name = match[1];
 	messageIndex = 0;
-	bot.sendMessage(msg.chat.id, messageArray[messageIndex]).then(function () {
+	mode = "get_pidgey";
+	bot.sendMessage(msg.chat.id, "Hello Gek Poh,\n\nMy name is Haven, and I will be your assistant to learn more about scams" + 
+		"\n\nThere are a few commands that you can try:" + 
+		"\nFeel like learning more about scams and their potential dangers? Type in /info to find out more." + 
+		"\nIf you're caught in an emergency situation, type in /emergency for me to assist you." + 
+		"\nNot sure if the phone call you received was legitimate? I can help you do a check when you type in /check" + 
+		"\nFinally, you can stop me by typing in /quit").then(function () {
     	// reply sent!
     	messageIndex++;
   	});
