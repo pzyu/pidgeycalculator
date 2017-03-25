@@ -26,12 +26,11 @@ bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	mode = "get_pidgey";
 	bot.sendMessage(msg.chat.id, "Hello Gek Poh,\n\nMy name is Haven, and I will be your assistant to learn more about scams" + 
 		"\n\nThere are a few commands that you can try:" + 
-		"\nFeel like learning more about scams and their potential dangers? Type in /info to find out more." + 
-		"\nIf you're caught in an emergency situation, type in /emergency for me to assist you." + 
-		"\nNot sure if the phone call you received was legitimate? I can help you do a check when you type in /check" + 
-		"\nFinally, you can stop me by typing in /quit").then(function () {
+		"\n\nFeel like learning more about scams and their potential dangers? Type in /info to find out more." + 
+		"\n\nIf you're caught in an emergency situation, type in /emergency for me to assist you." + 
+		"\n\nNot sure if the phone call you received was legitimate? I can help you do a check when you type in /check" + 
+		"\n\nFinally, you can stop me by typing in /quit").then(function () {
     	// reply sent!
-    	messageIndex++;
   	});
 });
 
@@ -42,21 +41,21 @@ bot.onText(/^\/stop.*$/, function(msg, match) {
 	}
 });
 
-bot.onText(/^\/pidgey.*$/, function(msg, match) {
+bot.onText(/^\/info.*$/, function(msg, match) {
 	mode = "get_pidgey"
-	bot.sendMessage(msg.chat.id, "First, tell me how many Pidgeys you have");
+	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
 		//getPidgey(msg);
-		console.log("Typing" + messageArray[messageIndex]);
-		bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
-    	messageIndex++;
-    	if(messageIndex > messageArray.length - 1) {
-    		messageIndex = 0;
-    	}
+  //   	messageIndex++;
+		// console.log("Typing" + messageArray[messageIndex]);
+		// bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
+  //   	if(messageIndex > messageArray.length - 1) {
+  //   		messageIndex = 0;
+  //   	}
 	} else if (mode == "get_candy") {
 		getCandy(msg);
 	}
