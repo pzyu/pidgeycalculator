@@ -71,19 +71,16 @@ bot.onText(/^\/quit.*$/, function(msg, match) {
 bot.onText(/^\/info.*$/, function(msg, match) {
 	mode = "info_mode";
 	infoIndex = 0;
-	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/^\/emergency.*$/, function(msg, match) {
 	mode = "emergency_mode";
 	emergencyIndex = 0;
-	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/^\/check.*$/, function(msg, match) {
 	mode = "check_mode";
 	checkIndex = 0;
-	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/.*/, function(msg, match) {
@@ -94,21 +91,21 @@ bot.onText(/.*/, function(msg, match) {
 		console.log(infoIndex);
 		infoIndex++;
 		if (infoIndex > info.length - 1) {
-			mode == "idle";
+			mode = "idle";
 			infoIndex = 0;
 		}
 	} else if (mode == "emergency_mode") {
 		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
 		emergencyIndex++;
 		if (emergencyIndex > emergency.length - 1) {
-			mode == "idle";
+			mode = "idle";
 			emergencyIndex = 0;
 		}
 	} else if (mode == "check_mode") {
 		bot.sendMessage(msg.chat.id, scams[scamsIndex]);
 		scamsIndex++;
 		if (scamsIndex > scams.length - 1) {
-			mode == "idle";
+			mode = "idle";
 			scamsIndex = 0;
 		}
 	}
