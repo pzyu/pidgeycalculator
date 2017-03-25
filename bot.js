@@ -37,7 +37,7 @@ var scams = [
 	"Hello Gek Poh, please send me the phone number or email address you would like to check.",
 	"Yes, this is indeed a scam! This number has been reported 34 times as an impersonation scam. Please no not follow their instructions or " +
 	"give out your personal information. \n\nDo you wish more about impersonation scams?\n\nBe Alert. Be Safe. Be Calm.\nHaven"
-]
+];
 
 var infoIndex = 0;
 var emergencyIndex = 0;
@@ -62,25 +62,25 @@ bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 
 bot.onText(/^\/quit.*$/, function(msg, match) {
 	if (mode != "idle") {
-		mode = "idle"
+		mode = "idle";
 		bot.sendMessage(msg.chat.id, "Thank you, and have a nice day!");
 	}
 });
 
 bot.onText(/^\/info.*$/, function(msg, match) {
-	mode = "info_mode"
+	mode = "info_mode";
 	infoIndex = 0;
 	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/^\/emergency.*$/, function(msg, match) {
-	mode = "emergency_mode"
+	mode = "emergency_mode";
 	emergencyIndex = 0;
 	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/^\/check.*$/, function(msg, match) {
-	mode = "check_mode"
+	mode = "check_mode";
 	checkIndex = 0;
 	bot.sendMessage(msg.chat.id, "");
 });
