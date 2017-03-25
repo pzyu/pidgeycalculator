@@ -86,21 +86,25 @@ bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "info_mode" && msg.text != "/info") {
 		bot.sendMessage(msg.chat.id, info[infoIndex]);
+		console.log(infoIndex);
 		infoIndex++;
 		if (infoIndex > info.length - 1) {
 			mode == "idle";
+			infoIndex = 0;
 		}
 	} else if (mode == "emergency_mode") {
 		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
 		emergencyIndex++;
 		if (emergencyIndex > emergency.length - 1) {
 			mode == "idle";
+			emergencyIndex = 0;
 		}
 	} else if (mode == "check_mode") {
 		bot.sendMessage(msg.chat.id, scams[scamsIndex]);
 		scamsIndex++;
 		if (scamsIndex > scams.length - 1) {
 			mode == "idle";
+			scamsIndex = 0;
 		}
 	}
 });
