@@ -47,6 +47,9 @@ bot.onText(/.*/, function(msg, match) {
 		//getPidgey(msg);
 		bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
     	messageIndex++;
+    	if(messageIndex > messageArray.length - 1) {
+    		messageIndex = 0;
+    	}
 	} else if (mode == "get_candy") {
 		getCandy(msg);
 	}
