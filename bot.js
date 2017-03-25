@@ -45,8 +45,11 @@ var scamsIndex = 0;
 
 bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
+	console.log(info);
+	console.log("Index: "+ infoIndex);
 	var name = match[1];
 	messageIndex = 0;
+	mode = "idle";
 	bot.sendMessage(msg.chat.id, "Hello Gek Poh,\n\nMy name is Haven, and I will be your assistant to learn more about scams!" + 
 		"\n\nThere are a few commands that you can try:" + 
 		"\n\nFeel like learning more about scams and their potential dangers? Type in /info to find out more." + 
