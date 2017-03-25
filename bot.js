@@ -85,21 +85,21 @@ bot.onText(/^\/check.*$/, function(msg, match) {
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "info_mode" && msg.text != "/info") {
-		bot.sendMessage(msg.chat.id, information[infoIndex]);
+		bot.sendMessage(msg.chat.id, info[infoIndex]);
 		infoIndex++;
-		if (infoIndex > information.length - 1) {
+		if (infoIndex > info.length - 1) {
 			mode == "idle";
 		}
-	} else if (mode == "emergency") {
+	} else if (mode == "emergency_mode") {
 		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
 		emergencyIndex++;
 		if (emergencyIndex > emergency.length - 1) {
 			mode == "idle";
 		}
-	} else if (mode == "check") {
-		bot.sendMessage(msg.chat.id, check[checkIndex]);
-		checkIndex++;
-		if (checkIndex > check.length - 1) {
+	} else if (mode == "check_mode") {
+		bot.sendMessage(msg.chat.id, scams[scamsIndex]);
+		scamsIndex++;
+		if (scamsIndex > scams.length - 1) {
 			mode == "idle";
 		}
 	}
