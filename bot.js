@@ -9,11 +9,23 @@ var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
 
+var messageArray = [
+	"Good morning Gek Poh\nThis is Haven, and I'm here to help. Tell me, what do you wish to learn about scams?",
+	"Dear Gek Poh\nYes, this is indeed a scam! This number has been reported 34 times in total as an impersonation scam." +  
+	"Please do not follow their instructions or give out your personal information." + 
+	"\nDo you wish to learn more about impersonation" + 
+	"\nBe Alert. Be Safe. Be Calm. \nHaven"
+];
+
+var messageIndex = 0;
+
 bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
 	var name = match[1];
-	bot.sendMessage(msg.chat.id, "Hello " + msg.from.first_name + ", I'm your Pidgey calculator. To start, type in /pidgey. You can stop the operation by sending /stop at any time").then(function () {
+	messageIndex = 0;
+	bot.sendMessage(msg.chat.id, messageArray[messageIndex]).then(function () {
     	// reply sent!
+    	messageIndex++;
   	});
 });
 
@@ -33,7 +45,8 @@ bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
 		//getPidgey(msg);
-		bot.sendMessage(msg.chat.id, msg.text);
+		bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
+    	messageIndex++;
 	} else if (mode == "get_candy") {
 		getCandy(msg);
 	}
