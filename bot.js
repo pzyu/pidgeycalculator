@@ -47,6 +47,7 @@ bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
 	console.log(info);
 	console.log("Index: "+ infoIndex);
+	console.log(info[infoIndex]);
 	var name = match[1];
 	messageIndex = 0;
 	mode = "idle";
