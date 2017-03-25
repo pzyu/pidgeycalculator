@@ -9,22 +9,45 @@ var mode = "idle";
 var total_pidgeys = 0;
 var total_candies = 0;
 
-var messageArray = [
-	"Good morning Gek Poh\nThis is Haven, and I'm here to help. Tell me, what do you wish to learn about scams?",
-	"Dear Gek Poh\nYes, this is indeed a scam! This number has been reported 34 times in total as an impersonation scam." +  
-	"Please do not follow their instructions or give out your personal information." + 
-	"\nDo you wish to learn more about impersonation" + 
-	"\nBe Alert. Be Safe. Be Calm. \nHaven"
+var info = [
+	"Good choice, Gek Poh.\n\nWhat do you wish to learn about scams?",
+	"There are many different types of scams, the most common ones today are:\n" + 
+	"Impersonation scam\nInvestment scam\nInheritance scam\nKidnap scam\nLottery scam\nOnline purchase scam" +
+	"\n\nDo you wish to learn more about any of them?",
+	"Impersonation scams happen when you receive an unexpected phone call from someone purporting to be a government official, "+
+	"such as a police officer, investigation officer, or court official, be wary as this could be a scam call." +
+	"\n\nWhat to look out for:\nBe wary of calls from people claiming to be officials.\nKnow that official agencies would " +
+	"not ask you to make payments over the phone.\n\n" +
+	"How to protect yourself:\nDo not follow the caller's instructions\nRefrain from giving bank details, credit card numbers, " +
+	"OTP codes from tokens or passport numbers to strangers over the phone\nCall '999' if you require further assistance."
 ];
 
-var messageIndex = 0;
+var emergency = [
+	"Do not panic, Gek Poh. Remember to stay calm and think straight, now tell me what has happened.",
+	"Alright, don't worry. Did the man mention your granddaughter's name or describe how she looks?" + 
+	"\n\nHave you tried contacting your granddaughter? If she has not replied, think about where she normally is at this time of the day " +
+	"Is she usually in school, or having tuition classes, and that is why she cannot pick up the phone?",
+	"Not to worry, this sounds like a kidnap scam call. These 'kidnappers' usually have someone screaming or crying in the background " +
+	"for effect, but provide very little details about the person\n\n" + 
+	"Please continue to try contacting your granddaughter, you can try calling the school to confirm her safety and whereabouts. " +
+	"If she is still uncontactable after a few hours, please call the Police at '999' to make a report."
+];
+
+var scams = [
+	"Hello Gek Poh, please send me the phone number or email address you would like to check.",
+	"Yes, this is indeed a scam! This number has been reported 34 times as an impersonation scam. Please no not follow their instructions or " +
+	"give out your personal information. \n\nDo you wish more about impersonation scams?\n\nBe Alert. Be Safe. Be Calm.\nHaven"
+]
+
+var infoIndex = 0;
+var emergencyIndex = 0;
+var scamsIndex = 0;
 
 bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
 	console.log(msg);
 	var name = match[1];
 	messageIndex = 0;
-	mode = "get_pidgey";
-	bot.sendMessage(msg.chat.id, "Hello Gek Poh,\n\nMy name is Haven, and I will be your assistant to learn more about scams" + 
+	bot.sendMessage(msg.chat.id, "Hello Gek Poh,\n\nMy name is Haven, and I will be your assistant to learn more about scams!" + 
 		"\n\nThere are a few commands that you can try:" + 
 		"\n\nFeel like learning more about scams and their potential dangers? Type in /info to find out more." + 
 		"\n\nIf you're caught in an emergency situation, type in /emergency for me to assist you." + 
@@ -34,30 +57,51 @@ bot.onText(/^\/start.*|\/help.*$/, function(msg, match) {
   	});
 });
 
-bot.onText(/^\/stop.*$/, function(msg, match) {
+bot.onText(/^\/quit.*$/, function(msg, match) {
 	if (mode != "idle") {
 		mode = "idle"
-		bot.sendMessage(msg.chat.id, "I'll just go away now");
+		bot.sendMessage(msg.chat.id, "Thank you, and have a nice day!");
 	}
 });
 
 bot.onText(/^\/info.*$/, function(msg, match) {
-	mode = "get_pidgey"
+	mode = "info_mode"
+	infoIndex = 0;
+	bot.sendMessage(msg.chat.id, "");
+});
+
+bot.onText(/^\/emergency.*$/, function(msg, match) {
+	mode = "emergency_mode"
+	emergencyIndex = 0;
+	bot.sendMessage(msg.chat.id, "");
+});
+
+bot.onText(/^\/check.*$/, function(msg, match) {
+	mode = "check_mode"
+	checkIndex = 0;
 	bot.sendMessage(msg.chat.id, "");
 });
 
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
-	if (mode == "get_pidgey" && msg.text != "/pidgey" && msg.text != "/pidgey@pidgeycalculator_bot") {
-		//getPidgey(msg);
-  //   	messageIndex++;
-		// console.log("Typing" + messageArray[messageIndex]);
-		// bot.sendMessage(msg.chat.id, messageArray[messageIndex]);
-  //   	if(messageIndex > messageArray.length - 1) {
-  //   		messageIndex = 0;
-  //   	}
-	} else if (mode == "get_candy") {
-		getCandy(msg);
+	if (mode == "info_mode" && msg.text != "/info") {
+		bot.sendMessage(msg.chat.id, information[infoIndex]);
+		infoIndex++;
+		if (infoIndex > information.length - 1) {
+			mode == "idle";
+		}
+	} else if (mode == "emergency") {
+		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
+		emergencyIndex++;
+		if (emergencyIndex > emergency.length - 1) {
+			mode == "idle";
+		}
+	} else if (mode == "check") {
+		bot.sendMessage(msg.chat.id, check[checkIndex]);
+		checkIndex++;
+		if (checkIndex > check.length - 1) {
+			mode == "idle";
+		}
 	}
 });
 
