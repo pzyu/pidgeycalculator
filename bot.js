@@ -88,6 +88,7 @@ bot.onText(/^\/check.*$/, function(msg, match) {
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
 	if (mode == "info_mode" && msg.text != "/info") {
+		console.log(info[0]);
 		bot.sendMessage(msg.chat.id, info[infoIndex]);
 		console.log(infoIndex);
 		infoIndex++;
