@@ -113,7 +113,7 @@ function end(msg) {
 	scamsIndex = 0;
 	setTimeout(function() {	
 		bot.sendMessage(msg.chat.id, "Have a nice day Gek Poh.\n\nBe Alert. Be Safe. Be Calm.\nHaven");
-	}, 100;
+	}, 100);
 
 }
 
