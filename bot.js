@@ -36,7 +36,7 @@ var emergency = [
 var scams = [
 	"Hello Gek Poh, please send me the phone number or email address you would like to check.",
 	"Yes, this is indeed a scam! This number has been reported 34 times as an impersonation scam. Please no not follow their instructions or " +
-	"give out your personal information. \n\nDo you wish more about impersonation scams?\n\nBe Alert. Be Safe. Be Calm.\nHaven"
+	"give out your personal information. \n\nDo you wish more about impersonation scams?"
 ];
 
 var infoIndex = 0;
@@ -85,31 +85,35 @@ bot.onText(/^\/check.*$/, function(msg, match) {
 
 bot.onText(/.*/, function(msg, match) {
 	console.log("From [" + msg.from.first_name + "]: " + msg.text);
-	if (mode == "info_mode" && msg.text != "/info") {
-		console.log(info[0]);
+	if (mode == "info_mode") {
 		bot.sendMessage(msg.chat.id, info[infoIndex]);
-		console.log(infoIndex);
 		infoIndex++;
 		if (infoIndex > info.length - 1) {
-			mode = "idle";
-			infoIndex = 0;
+			end(msg);
 		}
 	} else if (mode == "emergency_mode") {
 		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
 		emergencyIndex++;
 		if (emergencyIndex > emergency.length - 1) {
-			mode = "idle";
-			emergencyIndex = 0;
+			end(msg);
 		}
 	} else if (mode == "check_mode") {
 		bot.sendMessage(msg.chat.id, scams[scamsIndex]);
 		scamsIndex++;
 		if (scamsIndex > scams.length - 1) {
-			mode = "idle";
-			scamsIndex = 0;
+			end(msg);
 		}
 	}
 });
+
+function end(msg) {
+	mode = "idle";
+	infoIndex = 0;
+	emergencyIndex = 0;
+	scamsIndex = 0;
+	bot.sendMessage(msg.chat.id, "Have a nice day Gek Poh.\n\nBe Alert. Be Safe. Be Calm.\nHaven");
+
+}
 
 function getPidgey(msg) {
 	var isNum = /^\d+$/.test(msg.text);
