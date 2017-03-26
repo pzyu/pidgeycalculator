@@ -88,19 +88,19 @@ bot.onText(/.*/, function(msg, match) {
 	if (mode == "info_mode") {
 		bot.sendMessage(msg.chat.id, info[infoIndex]);
 		infoIndex++;
-		if (infoIndex > info.length - 1) {
+		if (infoIndex > info.length) {
 			end(msg);
 		}
 	} else if (mode == "emergency_mode") {
 		bot.sendMessage(msg.chat.id, emergency[emergencyIndex]);
 		emergencyIndex++;
-		if (emergencyIndex > emergency.length - 1) {
+		if (emergencyIndex > emergency.length) {
 			end(msg);
 		}
 	} else if (mode == "check_mode") {
 		bot.sendMessage(msg.chat.id, scams[scamsIndex]);
 		scamsIndex++;
-		if (scamsIndex > scams.length - 1) {
+		if (scamsIndex > scams.length) {
 			end(msg);
 		}
 	}
@@ -111,7 +111,9 @@ function end(msg) {
 	infoIndex = 0;
 	emergencyIndex = 0;
 	scamsIndex = 0;
-	bot.sendMessage(msg.chat.id, "Have a nice day Gek Poh.\n\nBe Alert. Be Safe. Be Calm.\nHaven");
+	setTimeout(function() {	
+		bot.sendMessage(msg.chat.id, "Have a nice day Gek Poh.\n\nBe Alert. Be Safe. Be Calm.\nHaven");
+	}, 100;
 
 }
 
